@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = true;
 
         try {
-            const response = await fetch('http://localhost:3000/api/register', {
+            const response = await fetch('https://elective-backend.vercel.app/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -95,7 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 registrationForm.reset();
                 electivesContainer.innerHTML = '';
             } else {
-                showMessage(result.error || 'Registration failed.', 'error');
+                const errorMsg = result.error || 'Registration failed.';
+                if (errorMsg === 'Student with this roll number is already registered.') {
+                    alert(errorMsg);
+                }
+                showMessage(errorMsg, 'error');
             }
         } catch (error) {
             showMessage('Connection to server failed.', 'error');
