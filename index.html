@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elective Registration | KRISTU JAYANTI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h3>KRISTU JAYANTI DEEMED TO BE UNIVERSITY</h3>
+            <p>KRISTU JAYANTI INSTITUTE OF TECHNOLOGIES</p>
+        </div>
+        
+        <div class="form-card">
+            <h2>Elective Registration</h2>
+            
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="course">Select Course</label>
+                    <select id="course" name="course" required>
+                        <option value="" disabled selected>-- Select Course --</option>
+                        <option value="MSc">MSc</option>
+                        <option value="MCA">MCA</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" id="studentName" name="studentName" placeholder="Enter Full Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rollNumber">Roll Number</label>
+                    <input type="text" id="rollNumber" name="rollNumber" placeholder="Enter Roll Number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentClass">Class</label>
+                    <input type="text" id="studentClass" name="studentClass" placeholder="Enter Class" required>
+                </div>
+
+                <div id="electivesContainer">
+                    <!-- Dynamic elective dropdowns will appear here -->
+                </div>
+
+                <button type="submit" id="submitBtn">SUBMIT</button>
+            </form>
+
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+:root {
+    --primary-color: #0b2239;
+    --secondary-color: #28a745;
+    --text-color: #333;
+    --background-color: #f7f9fc;
+    --card-background: #ffffff;
+    --border-color: #e1e4e8;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 550px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-header h3 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.form-header p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.form-card {
+    background-color: var(--card-background);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+#submitBtn {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 10px;
+    transition: opacity 0.3s;
+}
+
+#submitBtn:hover {
+    opacity: 0.9;
+}
+
+.message {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: var(--success-color);
+    display: block;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: var(--error-color);
+    display: block;
+}
+
+#electivesContainer {
+    margin-bottom: 10px;
+}
+
+.elective-group {
+    margin-bottom: 20px;
+}
