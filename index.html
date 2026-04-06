@@ -8,12 +8,11 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div class="container">
         <div class="form-header">
             <h3>KRISTU JAYANTI DEEMED TO BE UNIVERSITY</h3>
-            <p>KRISTU JAYANTI INSTITUTE OF TECHNOLOGIES</p>
+  
         </div>
 
         <div class="form-card">
@@ -42,7 +41,9 @@
 
                 <div class="form-group">
                     <label for="studentClass">Class</label>
-                    <input type="text" id="studentClass" name="studentClass" placeholder="Enter Class" required>
+                    <select id="studentClass" name="studentClass" required>
+                        <option value="" disabled selected>-- Select a course first --</option>
+                    </select>
                 </div>
 
                 <div id="electivesContainer">

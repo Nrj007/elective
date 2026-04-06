@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const courseSelect = document.getElementById("course");
+  const classSelect = document.getElementById("studentClass");
   const electivesContainer = document.getElementById("electivesContainer");
   const mdcContainer = document.getElementById("mdcContainer");
   const registrationForm = document.getElementById("registrationForm");
@@ -7,21 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ── Elective options per course ──────────────────────────────────────────
   const courseConfig = {
-    MCA: {
-      electiveCount: 3,
+    "MCA": {
       options: ["Cloud Computing", "Cyber Security", "Mobile App Development"],
+      disabled: false,
+      classes: ["MCA A", "MCA B", "MCA C", "MCA D"],
     },
     "MSC CS": {
-      electiveCount: 1,
-      options: [
-        "Artificial Intelligence",
-        "Data Science",
-        "Internet of Things",
-      ],
+      options: [],
+      disabled: true,
+      classes: ["MSc CS A"],
     },
     "MSC DS": {
-      electiveCount: 2,
-      options: ["Big Data Analytics", "Machine Learning", "Deep Learning"],
+      options: ["Big Data Analytics", "Machine Learning"],
+      disabled: false,
+      classes: ["MSc DS A"],
     },
   };
 
@@ -57,24 +57,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const config = courseConfig[course];
     if (!config) return;
 
-    for (let i = 1; i <= config.electiveCount; i++) {
-      const group = document.createElement("div");
-      group.className = "form-group elective-group";
+    const group = document.createElement("div");
+    group.className = "form-group elective-group";
 
-      const label = document.createElement("label");
-      label.textContent = `Select Elective ${i}`;
-      label.setAttribute("for", `elective${i}`);
+    const label = document.createElement("label");
+    label.textContent = "Select Elective";
+    label.setAttribute("for", "elective1");
 
-      const select = document.createElement("select");
-      select.id = `elective${i}`;
-      select.name = `elective${i}`;
+    const select = document.createElement("select");
+    select.id = "elective1";
+    select.name = "elective1";
+
+    if (config.disabled) {
+      select.disabled = true;
+      const defaultOption = document.createElement("option");
+      defaultOption.value = "";
+      defaultOption.selected = true;
+      defaultOption.textContent = "-- No Elective Selection --";
+      select.appendChild(defaultOption);
+    } else {
       select.required = true;
-
       const defaultOption = document.createElement("option");
       defaultOption.value = "";
       defaultOption.disabled = true;
       defaultOption.selected = true;
-      defaultOption.textContent = `-- Select Elective ${i} --`;
+      defaultOption.textContent = "-- Select Elective --";
       select.appendChild(defaultOption);
 
       config.options.forEach((opt) => {
@@ -83,11 +90,11 @@ document.addEventListener("DOMContentLoaded", () => {
         option.textContent = opt;
         select.appendChild(option);
       });
-
-      group.appendChild(label);
-      group.appendChild(select);
-      electivesContainer.appendChild(group);
     }
+
+    group.appendChild(label);
+    group.appendChild(select);
+    electivesContainer.appendChild(group);
   }
 
   // ── Render MDC dropdown (shown for every course) ─────────────────────────
@@ -139,10 +146,32 @@ document.addEventListener("DOMContentLoaded", () => {
     mdcContainer.appendChild(group);
   }
 
+  // ── Render class dropdown ────────────────────────────────────────────────
+  function renderClasses(course) {
+    classSelect.innerHTML = "";
+    const config = courseConfig[course];
+    if (!config) return;
+
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    defaultOption.textContent = "-- Select Class --";
+    classSelect.appendChild(defaultOption);
+
+    config.classes.forEach((cls) => {
+      const option = document.createElement("option");
+      option.value = cls;
+      option.textContent = cls;
+      classSelect.appendChild(option);
+    });
+  }
+
   // ── On course change ─────────────────────────────────────────────────────
   courseSelect.addEventListener("change", async () => {
     const selectedCourse = courseSelect.value;
     await fetchMdcAvailability();
+    renderClasses(selectedCourse);
     renderElectives(selectedCourse);
     renderMdc();
   });
@@ -152,10 +181,9 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const formData = new FormData(registrationForm);
-    const data = {};
+    const data = { electives: [] };
     formData.forEach((value, key) => {
       if (key.startsWith("elective")) {
-        if (!data.electives) data.electives = [];
         data.electives.push(value);
       } else {
         data[key] = value;
