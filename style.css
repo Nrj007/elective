@@ -133,3 +133,26 @@ input:focus, select:focus {
 .elective-group {
     margin-bottom: 20px;
 }
+
+#mdcContainer {
+    margin-top: 10px;
+    padding-top: 18px;
+    border-top: 2px dashed var(--border-color);
+}
+
+.mdc-group {
+    margin-bottom: 20px;
+}
+
+.mdc-group label {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.seat-note {
+    margin-top: 6px;
+    font-size: 0.78rem;
+    color: #888;
+    font-style: italic;
+}
