@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ── Elective options per course ──────────────────────────────────────────
   const courseConfig = {
     "MCA": {
-      options: ["Cloud Computing", "Cyber Security", "Mobile App Development"],
+      options: ["Digital Analyst", "Cybersecurity"],
       disabled: false,
       classes: ["MCA A", "MCA B", "MCA C", "MCA D"],
     },
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       classes: ["MSc CS A"],
     },
     "MSC DS": {
-      options: ["Big Data Analytics", "Machine Learning"],
+      options: ["Digital Analysts", "Data warehousing and data mining"],
       disabled: false,
       classes: ["MSc DS A"],
     },
@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ── MDC options with seat limits ─────────────────────────────────────────
   const mdcOptions = [
-    { value: "MDC Option 1", label: "MDC Option 1", seats: 180 },
-    { value: "MDC Option 2", label: "MDC Option 2", seats: 71 },
-    { value: "MDC Option 3", label: "MDC Option 3", seats: 72 },
+    { value: "Ventureship and Start-up Management", label: "Ventureship and Start-up Management", seats: 180 },
+    { value: "Stock Market Investment Management", label: "Stock Market Investment Management", seats: 71 },
+    { value: "Personal Finance and Planning", label: "Personal Finance and Planning", seats: 72 },
   ];
 
   // Seat availability fetched from backend (keyed by MDC option value)
